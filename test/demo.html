@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Cache-Control" content="max-age=60" />
+    <meta http-equiv="Cache-Control" content="max-age=60"/>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
@@ -27,7 +27,6 @@
             color: #555555;
             line-height: 31px;
             padding: 15px;
-            margin-bottom: 1em;
         }
 
         /*内容 h4*/
@@ -54,10 +53,12 @@
             line-height: 34px;
             border-radius: 8px;
             font-size: 12px;
-            border: 1px solid #858382;
-            background: #000000;
-            opacity: 0.9;
+            border-top: 1px solid #858382;
+            border-left: 1px solid #858382;
+            border-right: 1px solid #858382;
+            background: rgba(0, 0, 0, 0.9);
         }
+
         /* u-tab li 设置 */
         .u-tab li {
             display: inline-block;
@@ -71,17 +72,135 @@
         .u-tab li:nth-last-child(1) {
             border-right: none;
         }
+
         /* 最大宽度 */
         .m-button-bar {
             width: 70%;
             margin: auto;
         }
+
         .top-nav {
             position: fixed;
             top: 0px;
             height: 50px;
             width: 100%;
             z-index: 9999;
+            background: rgba(0, 0, 0, 0.9);
+        }
+
+        .icon-back {
+            float: left;
+            position: absolute;
+            left: 5px;
+            width: 24px;
+            height: 24px;
+            background: url(img/icon_back.png) no-repeat;
+            background-size: 24px 24px;
+            margin: 13px 8px 0;
+        }
+
+        /* 返回书城 */
+        .icon-back-title {
+            position: absolute;
+            top: 16px;
+            left: 42px;
+            color: #d5d5d5;
+        }
+
+        /* 底部导航 */
+        .bottom-reader-foot {
+            background: rgba(0, 0, 0, 0.9);
+            position: fixed;
+            bottom: 0px;
+            height: 70px;
+            width: 100%;
+            text-align: center;
+            z-index: 10004;
+            margin: 0 auto;
+            background: #000;
+            opacity: .9;
+        }
+
+        .bottom-reader-foot .item {
+            display: inline-block;
+            width: 20%;
+            color: #fff;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .bottom-nav-content {
+            width: 26px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* 目录 */
+        .bottom-icon-menu {
+            position: absolute;
+            left: 4px;
+            width: 16px;
+            height: 16px;
+            background: url("img/icon_menu.png");
+            background-size: contain;
+        }
+
+        /* 字体 */
+        .bottom-icon-font {
+            position: absolute;
+            left: 4px;
+            width: 23px;
+            height: 15px;
+            background: url("img/icon_font.png");
+            background-size: contain;
+        }
+
+        /* 皮肤 */
+        .bottom-icon-skin-night {
+            position: absolute;
+            top: 2px;
+            left: 4px;
+            width: 16px;
+            height: 16px;
+            background: url("img/icon_night.png");
+            background-size: contain;
+        }
+
+        /* 皮肤 */
+        .bottom-icon-skin-day {
+            position: absolute;
+            top: 2px;
+            left: 4px;
+            width: 16px;
+            height: 16px;
+            background: url("img/icon_day.png");
+            background-size: contain;
+        }
+
+        /* 下载 */
+        .bottom-icon-download {
+            position: absolute;
+            top: 2px;
+            left: 4px;
+            width: 20px;
+            height: 17px;
+            background: url("img/icon_download.png");
+            background-size: contain;
+        }
+
+        .bottom-content-title {
+            font-size: 13px;
+            color: #d5d5d5;
+            position: absolute;
+            top: 25px;
+        }
+
+        .bottom-nav .item {
+            display: inline-block;
+            width: 25%;
+            color: #fff;
+            text-align: center;
+            margin: 0 auto;
         }
 
     </style>
@@ -92,7 +211,7 @@
 
     <div id="top-nav" class="top-nav">
         <div class="icon-back"></div>
-        <div class="nac-title">返回书架</div>
+        <div class="icon-back-title">返回书架</div>
     </div>
 
 
@@ -142,8 +261,50 @@
             <li id="prev_button">上一章</li>
             <li id="next_button">下一章</li>
         </ul>
-
     </div>
+
+    <div class="bottom-reader-foot bottom-reader-foot">
+        <div class="item menu-button" id="menu_button">
+            <div class="bottom-nav-content">
+                <div class="bottom-icon-menu"></div>
+                <div class="bottom-content-title">
+                    目录
+                </div>
+            </div>
+        </div>
+        <div class="item" id="font-button">
+            <div class="bottom-nav-content">
+                <div class="bottom-icon-font"></div>
+                <div class="bottom-content-title">
+                    字体
+                </div>
+            </div>
+        </div>
+        <div class="item" id="night-button">
+            <div class="bottom-nav-content" style="display:none" id="day_icon">
+                <div class="bottom-icon-skin-day"></div>
+                <div class="bottom-content-title">
+                    白天
+                </div>
+            </div>
+            <div class="bottom-nav-content" id="night_icon">
+                <div class="bottom-icon-skin-night"></div>
+                <div class="bottom-content-title">
+                    夜间
+                </div>
+            </div>
+        </div>
+
+        <div class="item" id="download-button">
+            <div class="bottom-nav-content">
+                <div class="bottom-icon-download"></div>
+                <div class="bottom-content-title">
+                    下载
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </div>
 
